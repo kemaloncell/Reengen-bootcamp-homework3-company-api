@@ -1,7 +1,7 @@
 <template>
   <div class="chart-container">
     <div class="chart" ref="chart"></div>
-    <div class="options">
+    <!--  <div class="options">
       <input v-model="timeSeries" type="radio" name="option" id="daily" value="TIME_SERIES_DAILY" checked />
       <label class="option-label" for="daily">Daily</label>
       <span>|</span>
@@ -10,14 +10,14 @@
       <span>|</span>
       <input v-model="timeSeries" type="radio" name="option" id="monthly" value="TIME_SERIES_MONTHLY" />
       <label class="option-label" for="monthly">Monthly</label>
-    </div>
+    </div> -->
     <v-container fluid>
       <hr />
-      <!--   <v-radio-group row>
-        <v-radio label="Daily" v-model="timeSeries" value="TIME_SERIES_DAIL"></v-radio>
-        <v-radio label="Weekly" v-model="timeSeries" value="TIME_SERIES_WEEKLY"></v-radio>
-        <v-radio label="Monthly" v-model="timeSeries" value="TIME_SERIES_MONTHLY"></v-radio>
-      </v-radio-group> -->
+      <v-radio-group v-model="timeSeries" row>
+        <v-radio label="Daily" value="TIME_SERIES_DAILY"></v-radio>
+        <v-radio label="Weekly" value="TIME_SERIES_WEEKLY"></v-radio>
+        <v-radio label="Monthly" value="TIME_SERIES_MONTHLY"></v-radio>
+      </v-radio-group>
       <hr />
     </v-container>
   </div>

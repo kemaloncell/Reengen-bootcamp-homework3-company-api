@@ -13,9 +13,12 @@
             </v-btn>
           </template>
 
-          <v-list>
-            <v-list-item v-for="(item, i) in items" :key="i" @click="() => {}">
-              <v-list-item-title>{{ item }}</v-list-item-title>
+          <v-list class="list-item">
+            <v-list-item>
+              <v-list-item-title @click="goHomePage()">Home</v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title @click="goAdminPage()">Admin</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
@@ -33,8 +36,28 @@
 export default {
   name: 'App',
   components: {},
-  data: () => ({
-    items: ['Guest', 'Admin'],
-  }),
+  data() {
+    return {
+      chooseUser: 'User',
+      chooseAdmin: 'Admin',
+    };
+  },
+
+  methods: {
+    goHomePage() {
+      this.$router.push({ name: 'Home' });
+      this.$store.state.onlineUser = this.chooseUser;
+    },
+    goAdminPage() {
+      this.$router.push({ name: 'Admin' });
+      this.$store.state.onlineUser = this.chooseAdmin;
+    },
+  },
 };
 </script>
+
+<style scoped>
+.list-item {
+  cursor: pointer;
+}
+</style>
