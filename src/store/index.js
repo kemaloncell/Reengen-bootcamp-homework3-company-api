@@ -16,6 +16,7 @@ export default new Vuex.Store({
     timeSeries: 'TIME_SERIES_DAILY',
     onlineUser: 'User',
     log_count: 0,
+    companyTitle: '',
   },
   mutations: {
     SET_COMPANY_SEARCH_RESULT(state, payload) {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     SET_TIME_SERIES(state, payload) {
       state.timeSeries = payload;
+    },
+    SET_COMPANY_TITLE(state, payload) {
+      state.companyTitle = payload;
     },
   },
   actions: {
@@ -47,14 +51,13 @@ export default new Vuex.Store({
         .catch((e) => console.log(e));
     },
 
-    fetchCompanyData({ state, commit, getters }, payload) {
+    fetchCompanyData({ state, commit, getters }) {
       axios
         .get(`${state.apiURL}/query`, {
           headers: { ...state.headers },
           params: {
             function: state.timeSeries,
-            symbol: payload,
-            outputsize: 'compact',
+            symbol: state.companyTitle,
             datatype: 'json',
           },
         })

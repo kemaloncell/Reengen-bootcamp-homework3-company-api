@@ -25,13 +25,13 @@ export default {
     };
   },
 
-  mounted() {
+  /* mounted() {
     if (this.$route.query.symbol) {
       this.select = this.temporary;
       console.log(this.temporary);
       console.log(this.select);
     }
-  },
+  }, */
   methods: {
     querySelections(v) {
       this.loading = true;
@@ -60,7 +60,9 @@ export default {
 
       // send company data to action
       if (this.search !== '') {
-        this.$store.dispatch('fetchCompanyData', companyTitle);
+        this.$store.commit('SET_COMPANY_TITLE', companyTitle);
+        this.$store.dispatch('fetchCompanyData');
+
         this.select = companyTitle;
       }
     },
@@ -71,8 +73,6 @@ export default {
   watch: {
     // Searching and forwarding with 3 letters
     search(val) {
-      // console.log(val);
-
       if (val.length >= 3) {
         console.log(val);
         console.log(val.length);
