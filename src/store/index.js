@@ -12,7 +12,7 @@ export default new Vuex.Store({
       'x-rapidapi-key': 'e3a4c39faamsh38e322c67483b4bp13281cjsncbb2f77f229e',
     },
     searchCompanies: [],
-    companyData: [],
+    companyData: null,
     timeSeries: 'TIME_SERIES_DAILY',
     onlineUser: 'User',
     log_count: 0,
@@ -59,13 +59,11 @@ export default new Vuex.Store({
           },
         })
         .then((res) => {
-          /*  console.log(res);
-          commit('SET_COMPANY_DATA', res.data);
-          console.log(state.companyData); */
           let arrayData = Object.keys(res.data[getters.timeSeriesName]).map((item) => ({
             [item]: res.data[getters.timeSeriesName][item],
           }));
           arrayData = arrayData.slice(0, 100);
+
           commit('SET_COMPANY_DATA', arrayData);
           console.log(state.companyData);
           console.log(res);

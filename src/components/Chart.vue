@@ -1,16 +1,6 @@
 <template>
   <div class="chart-container">
     <div class="chart" ref="chart"></div>
-    <!--  <div class="options">
-      <input v-model="timeSeries" type="radio" name="option" id="daily" value="TIME_SERIES_DAILY" checked />
-      <label class="option-label" for="daily">Daily</label>
-      <span>|</span>
-      <input v-model="timeSeries" type="radio" name="option" id="weekly" value="TIME_SERIES_WEEKLY" />
-      <label class="option-label" for="weekly">Weekly</label>
-      <span>|</span>
-      <input v-model="timeSeries" type="radio" name="option" id="monthly" value="TIME_SERIES_MONTHLY" />
-      <label class="option-label" for="monthly">Monthly</label>
-    </div> -->
     <v-container fluid>
       <hr />
       <v-radio-group v-model="timeSeries" row>
@@ -35,20 +25,6 @@ export default {
   computed: {
     // Getting the stock data from Vuex and re-formatting it as an array of objects for the use of our Candlestick Chart
     formattedCompanyData() {
-      /*  let dataArray = [];
-      for (let data in this.$store.state.companyData[this.timeSeries]) {
-        let newObject = {
-          Date: data,
-          Open: this.$store.state.companyData[this.timeSeries][data]['1. open'],
-          High: this.$store.state.companyData[this.timeSeries][data]['2. high'],
-          Low: this.$store.state.companyData[this.timeSeries][data]['3. low'],
-          Close: this.$store.state.companyData[this.timeSeries][data]['4. close'],
-          Volume: this.$store.state.companyData[this.timeSeries][data]['5. volume'],
-        };
-        dataArray.push(newObject);
-      }
-      return dataArray; */
-
       let dataArray = this.$store.state.companyData.map((item) => {
         return {
           Date: Object.keys(item),
