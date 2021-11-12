@@ -34,6 +34,7 @@ export default {
   },
   methods: {
     querySelections(v) {
+      // loading bar start
       this.loading = true;
       setTimeout(() => {
         this.getSearchCompanies.forEach((element) => {
@@ -45,6 +46,7 @@ export default {
         this.items = this.states.filter((e) => {
           return (e || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1;
         });
+        // loading bar start end
         this.loading = false;
       }, 500);
     },
@@ -74,10 +76,7 @@ export default {
     // Searching and forwarding with 3 letters
     search(val) {
       const data = val;
-
       if (data != null && data.length >= 3) {
-        console.log(val);
-        console.log(val.length);
         this.$store.dispatch('searchCompanyTitle', val);
         // invoke the querySelections and push the search value for autocompalte
         val && val !== this.select && this.querySelections(val);
