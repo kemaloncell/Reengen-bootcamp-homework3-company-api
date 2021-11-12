@@ -25,13 +25,13 @@ export default {
     };
   },
 
-  /* mounted() {
+  mounted() {
     if (this.$route.query.symbol) {
-      this.select = this.temporary;
-      console.log(this.temporary);
+      this.select = this.search;
+      console.log(this.search);
       console.log(this.select);
     }
-  }, */
+  },
   methods: {
     querySelections(v) {
       this.loading = true;
@@ -73,10 +73,13 @@ export default {
   watch: {
     // Searching and forwarding with 3 letters
     search(val) {
-      if (val.length >= 3) {
+      const data = val;
+
+      if (data != null && data.length >= 3) {
         console.log(val);
         console.log(val.length);
         this.$store.dispatch('searchCompanyTitle', val);
+        // invoke the querySelections and push the search value for autocompalte
         val && val !== this.select && this.querySelections(val);
       }
     },

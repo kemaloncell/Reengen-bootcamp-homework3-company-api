@@ -19,6 +19,7 @@ export default {
   name: 'Chart',
   data() {
     return {
+      // default value
       timeSeries: 'TIME_SERIES_DAILY',
     };
   },

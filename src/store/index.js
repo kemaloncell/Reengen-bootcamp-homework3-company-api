@@ -34,6 +34,7 @@ export default new Vuex.Store({
   },
   actions: {
     searchCompanyTitle({ state, commit }, payload) {
+      // Extracting company name symbol from API
       axios
         .get(`${state.apiURL}/query`, { headers: { ...state.headers }, params: { keywords: payload, function: 'SYMBOL_SEARCH', datatype: 'json' } })
         .then((res) => {
@@ -52,6 +53,7 @@ export default new Vuex.Store({
     },
 
     fetchCompanyData({ state, commit, getters }) {
+      // Extracting company information from API according to daily, weekly, monthly status
       axios
         .get(`${state.apiURL}/query`, {
           headers: { ...state.headers },
@@ -68,9 +70,6 @@ export default new Vuex.Store({
           arrayData = arrayData.slice(0, 100);
 
           commit('SET_COMPANY_DATA', arrayData);
-          console.log(state.companyData);
-          console.log(res);
-          console.log(res.data);
         })
         .catch((e) => console.log(e));
     },
@@ -80,6 +79,7 @@ export default new Vuex.Store({
       return state.searchCompanies;
     },
     timeSeriesName(state) {
+      //the part that return its name according to the daily, weekly, monthly situation
       switch (state.timeSeries) {
         case 'TIME_SERIES_DAILY':
           return 'Time Series (Daily)';
