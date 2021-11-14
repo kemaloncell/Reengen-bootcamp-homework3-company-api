@@ -20,32 +20,26 @@ export default {
       loading: false,
       items: [],
       search: '',
-      select: null,
+      select: '',
       states: [],
     };
   },
 
-  mounted() {
-    if (this.$route.query.symbol) {
-      this.select = this.search;
-      console.log(this.search);
-      console.log(this.select);
-    }
-  },
   methods: {
-    querySelections(v) {
+    querySelections(val) {
+      this.getSearchCompanies.forEach((title) => {
+        // I pushed the data from the api to the items array
+        this.items.push(title.bio);
+      });
+
+      // I pushed the data from the items index to make it appear in autocomplete
+      this.items.filter((e) => {
+        return (e || '').toLowerCase().indexOf((val || '').toLowerCase()) > -1;
+      });
+
       // loading bar start
       this.loading = true;
       setTimeout(() => {
-        this.getSearchCompanies.forEach((element) => {
-          // I pushed the data from the api to the states array
-          this.states.push(element.bio);
-        });
-
-        // I pushed the data from the states array to the items index to make it appear in autocomplete
-        this.items = this.states.filter((e) => {
-          return (e || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1;
-        });
         // loading bar start end
         this.loading = false;
       }, 500);

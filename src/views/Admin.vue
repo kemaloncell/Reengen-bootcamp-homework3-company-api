@@ -50,8 +50,7 @@ export default {
       });
       localStorage.setItem(`log${store.state.log_count}`, JSON.stringify(obj));
       store.state.log_count++;
-      alert('Unauthorized user');
-      // next('/');
+      alert('Unauthorized User');
     } else {
       next();
     }
